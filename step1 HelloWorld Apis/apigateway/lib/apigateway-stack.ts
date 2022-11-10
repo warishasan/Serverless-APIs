@@ -19,17 +19,17 @@ export class ApigatewayStack extends cdk.Stack {
 
    const api = new cdk.aws_apigateway.LambdaRestApi(this, "RestApi", {
       handler: lambdaFnRestApi,
-      proxy:false
+      //proxy:false
     });
 
 
 
-    const items = api.root.addResource('items');
-    items.addMethod('GET');  // GET /items
-    items.addMethod('POST'); // POST /items
+    // const items = api.root.addResource('items');
+    // items.addMethod('GET');  // GET /items
+    // items.addMethod('POST'); // POST /items
 
-    const item = items.addResource('{item}');
-    item.addMethod('GET');   // GET /items/{item}
+    // const item = items.addResource('{item}');
+    // item.addMethod('GET');   // GET /items/{item}
 
   }
 }
