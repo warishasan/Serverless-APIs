@@ -52,6 +52,7 @@ export class AppsyncDynamodbLambdaDataSourceStack extends Stack {
         name: 'id',
         type: dynamodb.AttributeType.STRING,
       },
+      billingMode: dynamodb.BillingMode.PAY_PER_REQUEST
     });
 
     todosTable.grantFullAccess(todosLambda)

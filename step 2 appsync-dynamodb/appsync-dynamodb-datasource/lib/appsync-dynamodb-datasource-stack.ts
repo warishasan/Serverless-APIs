@@ -17,6 +17,7 @@ export class AppsyncDynamodbDatasourceStack extends Stack {
         name: 'id',
         type: dynamodb.AttributeType.STRING,
       },
+      billingMode: dynamodb.BillingMode.PAY_PER_REQUEST
     });
 
     ///Attaching Datasource to api
@@ -38,6 +39,14 @@ export class AppsyncDynamodbDatasourceStack extends Stack {
       requestMappingTemplate: appsync.MappingTemplate.dynamoDbScanTable(),      ///Mapping template to scan a DynamoDB table to fetch all entries.
       responseMappingTemplate: appsync.MappingTemplate.dynamoDbResultList(),    ////Mapping template for a result list from DynamoDB.
     })
+
+    db_data_source.createResolver({
+      typeName: "Query",
+      fieldName: "notesById",
+      requestMappingTemplate: appsync.MappingTemplate.dynamoDbGetItem('id', 'id'),       ///Get item from table according to id recive in input  //Where id is input ID
+      responseMappingTemplate: appsync.MappingTemplate.dynamoDbResultItem()             ////Mapping template for a single result item from DynamoDB.
+    });
+
 
     db_data_source.createResolver({
       typeName: "Mutation",

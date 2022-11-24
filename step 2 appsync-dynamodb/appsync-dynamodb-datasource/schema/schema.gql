@@ -5,6 +5,7 @@ type Note {
 
 type Query {
   notes: [Note!]
+  notesById(id: String!)
 }
 
 type Mutation {
