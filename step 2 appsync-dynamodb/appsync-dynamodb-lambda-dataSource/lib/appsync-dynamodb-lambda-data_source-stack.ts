@@ -27,6 +27,12 @@ export class AppsyncDynamodbLambdaDataSourceStack extends Stack {
     });
 
     lambdaDs.createResolver({
+      typeName: "Query",
+      fieldName: "getTodoById"
+    });
+
+
+    lambdaDs.createResolver({
       typeName: "Mutation",
       fieldName: "addTodo"
     });
@@ -50,7 +56,6 @@ export class AppsyncDynamodbLambdaDataSourceStack extends Stack {
 
     todosTable.grantFullAccess(todosLambda)
     todosLambda.addEnvironment('TODOS_TABLE', todosTable.tableName);
-
 
   }
 }

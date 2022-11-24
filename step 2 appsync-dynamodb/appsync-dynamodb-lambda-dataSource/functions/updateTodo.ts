@@ -19,23 +19,24 @@ async function updateTodo(todo: any) {
         ExpressionAttributeValues: {},
         ExpressionAttributeNames: {},
         UpdateExpression: "",
-        ReturnValues: "UPDATED_NEW"
+        ReturnValues: "ALL_NEW"
     };
     let prefix = "set ";
     let attributes = Object.keys(todo);
-    for (let i = 0; i < attributes.length; i++) {
-        let attribute = attributes[i];
-        if (attribute !== "id") {
-            params["UpdateExpression"] += prefix + "#" + attribute + " = :" + attribute;
-            params["ExpressionAttributeValues"][":" + attribute] = todo[attribute];
-            params["ExpressionAttributeNames"]["#" + attribute] = attribute;
-            prefix = ", ";
+
+    for (let i = 0; i < attributes.length; i++) {                                                  //{
+        let attribute = attributes[i];                                                             //   TableName: 'process.env.TODOS_TABLE', 
+        if (attribute !== "id") {                                                                  //    Key: { id: '1' },
+            params["UpdateExpression"] += prefix + "#" + attribute + " = :" + attribute;           //   UpdateExpression: 'set #title = :title, #done = :done',
+            params["ExpressionAttributeNames"]["#" + attribute] = attribute;                       //   ExpressionAttributeNames: { '#title': 'title', '#done': 'done' },
+            params["ExpressionAttributeValues"][":" + attribute] = todo[attribute];                //   ExpressionAttributeValues: { ':title': '2nd todo', ':done': true },
+            prefix = ", ";                                                                         //   ReturnValues: 'ALL_NEW' //  } 
         }
     }
 
     try {
-        await docClient.update(params).promise()
-        return todo
+        const updatedTodo = await docClient.update(params).promise()
+        return updatedTodo.Attributes
     } catch (err) {
         console.log('DynamoDB error: ', err)
         return null

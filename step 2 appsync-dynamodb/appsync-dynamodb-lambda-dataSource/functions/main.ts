@@ -3,6 +3,7 @@ import deleteTodo from './deleteTodo';
 import getTodos from './getTodos';
 import updateTodo from './updateTodo';
 import Todo from './Todo';
+import getTodoById from './getTodoById';
 
 type AppSyncEvent = {
     info: {
@@ -21,6 +22,8 @@ exports.handler = async (event: AppSyncEvent) => {
             return await addTodo(event.arguments.todo);
         case "getTodos":
             return await getTodos();
+        case "getTodoById":
+            return await getTodoById(event.arguments.todoId);
         case "deleteTodo":
             return await deleteTodo(event.arguments.todoId);
         case "updateTodo":
