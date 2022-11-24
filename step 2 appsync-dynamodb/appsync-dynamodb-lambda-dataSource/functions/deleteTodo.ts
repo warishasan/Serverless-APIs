@@ -1,9 +1,10 @@
-const AWS = require('aws-sdk');
+import AWS = require('aws-sdk');
+
 const docClient = new AWS.DynamoDB.DocumentClient();
 
 async function deleteTodo(todoId: string) {
     const params = {
-        TableName: process.env.TODOS_TABLE,
+        TableName: process.env.TODOS_TABLE as string,
         Key: {
             id: todoId
         }

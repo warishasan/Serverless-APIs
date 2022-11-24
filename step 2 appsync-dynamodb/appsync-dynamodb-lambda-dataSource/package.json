@@ -11,6 +11,7 @@
     "cdk": "cdk"
   },
   "devDependencies": {
+    "@types/aws-sdk": "^2.7.0",
     "@types/jest": "^27.5.2",
     "@types/node": "10.17.27",
     "@types/prettier": "2.6.0",
@@ -23,6 +24,7 @@
   "dependencies": {
     "@aws-cdk/aws-appsync-alpha": "^2.51.1-alpha.0",
     "aws-cdk-lib": "2.34.2",
+    "aws-sdk": "^2.1261.0",
     "constructs": "^10.0.0",
     "source-map-support": "^0.5.21"
   }

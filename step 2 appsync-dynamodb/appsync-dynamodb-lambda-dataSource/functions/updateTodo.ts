@@ -1,18 +1,24 @@
-const AWS = require('aws-sdk');
+import AWS = require('aws-sdk');
 const docClient = new AWS.DynamoDB.DocumentClient();
 
 type Params = {
-    TableName: string | undefined,
-    Key: string | {},
-    ExpressionAttributeValues: any,
-    ExpressionAttributeNames: any,
+    TableName: string,
+    Key: {
+        [key: string]: string | boolean
+    },
+    ExpressionAttributeValues: {
+        [key: string]: string | boolean
+    },
+    ExpressionAttributeNames: {
+        [key: string]: string,
+    },
     UpdateExpression: string,
     ReturnValues: string
 }
 
 async function updateTodo(todo: any) {
     let params: Params = {
-        TableName: process.env.TODOS_TABLE,
+        TableName: process.env.TODOS_TABLE as string,
         Key: {
             id: todo.id
         },

@@ -1,10 +1,10 @@
-const AWS = require('aws-sdk');
+import AWS = require('aws-sdk');
 const docClient = new AWS.DynamoDB.DocumentClient();
 import Todo from './Todo';
 
 async function addTodo(todo: Todo) {
     const params = {
-        TableName: process.env.TODOS_TABLE,
+        TableName: process.env.TODOS_TABLE as string,
         Item: todo
     }
     try {
