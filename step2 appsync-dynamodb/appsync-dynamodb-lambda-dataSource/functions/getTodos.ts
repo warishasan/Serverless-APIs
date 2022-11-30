@@ -15,3 +15,12 @@ async function getTodos() {
 }
 
 export default getTodos;
+
+// const params = {
+//     TableName: 'process.env.TODOS_TABLE',
+//     FilterExpression : "begins_with(#title, :title)",
+//     ExpressionAttributeNames: { "#title": "title" },
+//     ExpressionAttributeValues: {
+//         ':title':"todo"
+//     }
+// };
