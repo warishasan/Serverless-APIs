@@ -1,0 +1,28 @@
+type Todo {
+  id: ID!
+  title: String!
+  done: Boolean!
+}
+
+input TodoInput {
+  id: ID!
+  title: String!
+  done: Boolean!
+}
+
+input UpdateTodoInput {
+  id: ID!
+  title: String
+  done: Boolean
+}
+
+type Query {
+  getTodos: [Todo]   @aws_api_key @aws_lambda
+  getTodoById(todoId: String!): Todo  @aws_api_key
+}
+
+type Mutation {
+  addTodo(todo: TodoInput!): Todo  @aws_lambda
+  updateTodo(todo: UpdateTodoInput!): Todo  @aws_lambda
+  deleteTodo(todoId: String!): String
+}
