@@ -16,6 +16,8 @@ type AppSyncEvent = {
 }
 
 exports.handler = async (event: AppSyncEvent) => {
+    console.log('event====>',event)
+
     switch (event.info.fieldName) {
 
         case "addTodo":
