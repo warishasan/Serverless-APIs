@@ -1,0 +1,63 @@
+type Todo {
+  username: String!
+  id: ID!
+  title: String!
+  done: Boolean!
+  year: Int!
+}
+
+input TodoInput {
+  username: String!
+  id: ID!
+  title: String!
+  done: Boolean!
+  year: Int!
+}
+
+input UpdateTodoInput {
+  username: String!
+  id: ID!
+  title: String!
+  done: Boolean
+  year: Int
+}
+
+input TodoByUsernameAndTitleInput {
+  username: String!
+  title: String!
+}
+
+input TodoByUsernameAndIdInput {
+  username: String!
+  id: ID!
+}
+
+input TodosByUsernameAndYearInput {
+  username: String!
+  year: Int!
+}
+
+input TodosByYearAndTitleInput {
+  title: String!
+  year: Int!
+}
+
+input DeleteTodoInput {
+  title: String!
+  username: String!
+}
+
+type Query {
+  getTodos: [Todo]
+  getTodoByUsername(username: String!): [Todo]
+  getTodoByUsernameAndTitle(input: TodoByUsernameAndTitleInput!): [Todo]
+  getTodoByUsernameAndId(input: TodoByUsernameAndIdInput!): [Todo]
+  getTodosByUsernameAndYear(input: TodosByUsernameAndYearInput!): [Todo]
+  getTodosByYearAndTitle(input: TodosByYearAndTitleInput!): [Todo]
+}
+
+type Mutation {
+  addTodo(todo: TodoInput!): Todo
+  updateTodo(todo: UpdateTodoInput!): Todo
+  deleteTodo(input: DeleteTodoInput!): String
+}
