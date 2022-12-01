@@ -3,9 +3,6 @@ import { Construct } from 'constructs';
 import * as appsync from '@aws-cdk/aws-appsync-alpha';
 import { aws_dynamodb as dynamodb, aws_lambda as lambda } from 'aws-cdk-lib'
 import { DynamoEventSource } from 'aws-cdk-lib/aws-lambda-event-sources';
-
-// import * as sqs from 'aws-cdk-lib/aws-sqs';
-
 export class AppsyncDynamodbIndexQueriesStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props);
@@ -14,13 +11,6 @@ export class AppsyncDynamodbIndexQueriesStack extends Stack {
       name: 'appsync-dynodb-query-api',
       schema: appsync.Schema.fromAsset('schema/schema.graphql')
     })
-    
-    const todosLambda = new lambda.Function(this, 'AppsyncTodoHandler', {
-      runtime: lambda.Runtime.NODEJS_16_X,
-      handler: 'main.handler',
-      code: lambda.Code.fromAsset('functions'),
-      memorySize: 1024
-    });
 
     const todosTable = new dynamodb.Table(this, 'TodosTable', {
       partitionKey: {
@@ -67,6 +57,12 @@ export class AppsyncDynamodbIndexQueriesStack extends Stack {
       startingPosition: lambda.StartingPosition.LATEST,
     }));
 
+    const todosLambda = new lambda.Function(this, 'AppsyncTodoHandler', {
+      runtime: lambda.Runtime.NODEJS_16_X,
+      handler: 'main.handler',
+      code: lambda.Code.fromAsset('functions'),
+      memorySize: 1024
+    });
 
     todosTable.grantFullAccess(todosLambda);
     todosLambda.addEnvironment('TODOS_TABLE', todosTable.tableName);

@@ -1,8 +1,5 @@
-import { DocumentClient } from "aws-sdk/clients/dynamodb";
-import { UpdateTodoInput } from "./types";
-
 const AWS = require('aws-sdk');
-const docClient = new AWS.DynamoDB.DocumentClient();
+const docClient = new AWS.DynamoDB.DocumentClient({ apiVersion: '2012-08-10' });
 
 type Params = {
     TableName: string | undefined,

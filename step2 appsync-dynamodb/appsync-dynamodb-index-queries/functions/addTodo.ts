@@ -1,5 +1,5 @@
-const docClient = new DocumentClient();
 import { DocumentClient } from 'aws-sdk/clients/dynamodb';
+const docClient = new DocumentClient({ apiVersion: '2012-08-10' });
 import { Todo } from './types';
 
 async function addTodo(todo: Todo) {

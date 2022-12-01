@@ -1,4 +1,4 @@
-import DynamoDB = require("aws-sdk/clients/dynamodb");
+// import DynamoDB = require("aws-sdk/clients/dynamodb");
 
 exports.handler = async (event: any) => {
     event.Records.forEach((record: any) => {

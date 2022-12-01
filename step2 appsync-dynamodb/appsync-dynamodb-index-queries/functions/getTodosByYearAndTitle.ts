@@ -1,6 +1,6 @@
-import { DocumentClient } from "aws-sdk/clients/dynamodb";
+import { DocumentClient } from 'aws-sdk/clients/dynamodb';
+const docClient = new DocumentClient({ apiVersion: '2012-08-10' });
 import { TodosByYearAndTitleInput } from "./types";
-const docClient = new DocumentClient();
 
 export const getTodosByYearAndTitle = async (input: TodosByYearAndTitleInput) => {
     const { year, title } = input;

@@ -1,5 +1,5 @@
-import { DocumentClient } from "aws-sdk/clients/dynamodb";
-const docClient = new DocumentClient();
+import { DocumentClient } from 'aws-sdk/clients/dynamodb';
+const docClient = new DocumentClient({ apiVersion: '2012-08-10' });
 
 export const getTodoByUsername = async (username: string) => {
     const params: DocumentClient.QueryInput = {

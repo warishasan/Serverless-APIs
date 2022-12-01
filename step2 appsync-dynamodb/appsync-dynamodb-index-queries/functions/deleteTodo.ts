@@ -1,6 +1,6 @@
-import { DocumentClient } from "aws-sdk/clients/dynamodb";
+import { DocumentClient } from 'aws-sdk/clients/dynamodb';
+const docClient = new DocumentClient({ apiVersion: '2012-08-10' });
 import { deleteTodoInput } from "./types";
-const docClient = new DocumentClient();
 
 async function deleteTodo(input: deleteTodoInput) {
     const { title, username } = input
