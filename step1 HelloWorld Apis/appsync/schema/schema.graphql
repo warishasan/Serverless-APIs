@@ -4,8 +4,8 @@ type Query {
 
 type Mutation {
   addTodo(todo: TodoInput!): Todo
+  updateTodo(id: ID!, title: String!, done: Boolean!): Todo
 }
-
 
 type Todo {
   id: ID!
@@ -18,4 +18,3 @@ input TodoInput {
   title: String!
   done: Boolean!
 }
-

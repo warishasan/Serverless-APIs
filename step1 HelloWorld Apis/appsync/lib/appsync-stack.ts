@@ -7,8 +7,6 @@ export class AppsyncStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
- 
-
     const appsyncApi = new appsync.GraphqlApi(this, 'api', {
       name: 'test Api',
       schema: appsync.Schema.fromAsset('schema/schema.graphql')
@@ -24,16 +22,19 @@ export class AppsyncStack extends cdk.Stack {
 
     const DataSource = appsyncApi.addLambdaDataSource('ds', lambdaFnAppsync);
 
-
     DataSource.createResolver({
       typeName: "Mutation",
       fieldName: "addTodo",
     });
 
-
     DataSource.createResolver({
       typeName: "Query",
       fieldName: "getTodos",
+    });
+
+    DataSource.createResolver({
+      typeName: "Mutation",
+      fieldName: "updateTodo",
     });
 
 

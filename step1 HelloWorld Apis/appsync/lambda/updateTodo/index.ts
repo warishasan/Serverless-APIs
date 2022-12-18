@@ -1,6 +1,6 @@
 import {Todo} from "..";
 
- function addTodo(todo: Todo):Todo {
+ function updateTodo(todo: Todo):Todo {
     
 
     console.log('mutation started')
@@ -8,4 +8,4 @@ import {Todo} from "..";
     return todo
 }
 
-export default addTodo;
+export default updateTodo;
