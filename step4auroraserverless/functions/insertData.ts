@@ -26,7 +26,7 @@ export async function handler(
         port: secretValues.port, // port is 5432
         user: secretValues.username, // username is the same as the secret name
         password: secretValues.password, // this is the password for the default database in the db cluster
-        database: secretValues.dbname || 'postgres' // use the default database if no database is specified
+        database: secretValues.dbname || 'library' // use the default database if no database is specified
     });
 
     await db.connect();

@@ -3,7 +3,7 @@ import {
   SecretsManagerClient
 } from '@aws-sdk/client-secrets-manager';
 import { APIGatewayEvent, APIGatewayProxyResult } from 'aws-lambda';
-import { Client, QueryResult } from 'pg';
+import { Client, QueryResult, Pool } from 'pg';
 
 export async function handler(
   event: APIGatewayEvent
