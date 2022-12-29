@@ -26,6 +26,7 @@ export class ApiConstruct extends Construct {
             code: lambda.Code.fromAsset('functions'),
             memorySize: 1024
         });
+        this.apiLambda = todosLambda
 
         const lambdaDs = appsyncApi.addLambdaDataSource('lambdaDatasource', todosLambda);
 
