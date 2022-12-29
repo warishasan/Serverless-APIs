@@ -1,0 +1,12 @@
+schema: "schema/schema.graphql"
+generates:
+ 
+  functions/schemaTypes.ts:
+    plugins:
+      - typescript
+    config:
+      scalars:
+        AWSPhone: string
+        AWSEmail: string
+        AWSURL: string
+        AWSTimestamp: number
